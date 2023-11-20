@@ -120,7 +120,7 @@ app.get('/get-my-properties', authenticateUser, (req, res) => {
 
 });
 
-// ... Ajoutez les autres routes ici (annonces immobilières, etc.)
+
 
 app.post('/create-properties', authenticateUser, (req, res) => {
     const { title, description, price, location, images } = req.body;
@@ -150,6 +150,30 @@ app.post('/create-properties', authenticateUser, (req, res) => {
     properties.push(newProperty);
 
     res.status(201).json(newProperty);
+});
+
+app.delete('/delete-properties/:propertyId', authenticateUser, (req, res) => {
+    const propertyId = req.params.propertyId;
+
+    // Récupération de l'utilisateur à partir du token (simulé pour cet exemple)
+    const userId = req.user.id;
+    const user = users.find(u => u.id === userId);
+
+    // Vérification si l'utilisateur possède la propriété à supprimer
+    if (!user || !user.properties.includes(propertyId)) {
+        return res.status(404).send("Property not found");
+    }
+
+    // Suppression de la propriété de la liste des propriétés de l'utilisateur
+    user.properties = user.properties.filter(id => id !== propertyId);
+
+    // Suppression de la propriété de la liste globale des propriétés
+    const propertyIndex = properties.findIndex(p => p.id === propertyId);
+    if (propertyIndex !== -1) {
+        properties.splice(propertyIndex, 1);
+    }
+
+    res.status(200).json({ message: 'Property deleted successfully' });
 });
 
 // Démarrer le serveur
