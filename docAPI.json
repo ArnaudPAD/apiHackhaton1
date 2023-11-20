@@ -1,0 +1,82 @@
+{
+    "baseURL": "https://votre-api-immobiliere.com/api",
+    "endpoints": [
+      {
+        "name": "Inscription d'un Utilisateur",
+        "method": "POST",
+        "path": "/users/register",
+        "body": {
+          "username": "nom_utilisateur",
+          "email": "exemple@email.com",
+          "password": "mot_de_passe"
+        },
+        "response": {
+          "status": 201,
+          "body": {
+            "id": "id_utilisateur_generé",
+            "username": "nom_utilisateur",
+            "email": "exemple@email.com"
+          }
+        }
+      },
+      {
+        "name": "Connexion d'un Utilisateur",
+        "method": "POST",
+        "path": "/users/login",
+        "body": {
+          "email": "exemple@email.com",
+          "password": "mot_de_passe"
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "token": "jeton_d'authentification"
+          }
+        }
+      },
+      {
+        "name": "Récupération du Profil Utilisateur",
+        "method": "GET",
+        "path": "/users/profile",
+        "header": {
+          "Authorization": "Bearer jeton_d'authentification"
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "username": "nom_utilisateur",
+            "email": "exemple@email.com",
+            "properties": ["id_propriete_1", "id_propriete_2"]
+          }
+        }
+      },
+      {
+        "name": "Création d'une Annonce",
+        "method": "POST",
+        "path": "/properties",
+        "header": {
+          "Authorization": "Bearer jeton_d'authentification"
+        },
+        "body": {
+          "title": "Titre de l'annonce",
+          "description": "Description de la propriété",
+          "price": 150000,
+          "location": "Emplacement de la propriété",
+          "images": ["url_image_1", "url_image_2"]
+        },
+        "response": {
+          "status": 201,
+          "body": {
+            "id": "id_propriete_generé",
+            "title": "Titre de l'annonce",
+            "description": "Description de la propriété",
+            "price": 150000,
+            "location": "Emplacement de la propriété",
+            "images": ["url_image_1", "url_image_2"]
+          }
+        }
+      }
+   
+    ]
+  }
+  
