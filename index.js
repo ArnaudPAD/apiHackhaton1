@@ -6,7 +6,7 @@ const uuid = require('uuid');
 const jwt = require('jsonwebtoken');
 const app = express();
 const port = 3000;
-
+require("dotenv").config();
 app.use(bodyParser.json());
 
 // Exemple de base de données temporaire
@@ -153,6 +153,6 @@ app.post('/create-properties', authenticateUser, (req, res) => {
 });
 
 // Démarrer le serveur
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(process.env.PORT || 8080, () => {
+    console.log("Server started on port 8080");
 });
