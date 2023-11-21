@@ -2,12 +2,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
-
+const cors = require('cors'); // Ajoutez cette ligne
 const jwt = require('jsonwebtoken');
 const app = express();
 const port = 3000;
 require("dotenv").config();
 app.use(bodyParser.json());
+app.use(cors()); // Ajoutez cette ligne
 
 // Exemple de base de données temporaire
 const users = [];
