@@ -140,6 +140,7 @@ app.post('/create-properties', authenticateUser, (req, res) => {
         description,
         price,
         location,
+        email: user.email,
         userId: req.user.id,
         images,
     };
