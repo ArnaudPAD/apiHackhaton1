@@ -86,7 +86,7 @@
       "response": {
         "status": 200,
         "body": {
-          "message": "Property deleted successfully"
+          "message": "Property deleted successfullyY"
         }
       }
     }
